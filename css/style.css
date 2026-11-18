@@ -1,0 +1,909 @@
+/* =================================================================
+   style.css — design tokens, reset, and all Welcome Page styles
+   Theme: Dreamy Celestial Night Sky
+   ================================================================= */
+
+/* ── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  /* Palette */
+  --clr-midnight   : #24243E;
+  --clr-lavender   : #CDB4DB;
+  --clr-soft-pink  : #F3D5E5;
+  --clr-cream      : #FFF8ED;
+  --clr-white      : #FFFFFF;
+
+  /* Sky layers (not in palette, internal) */
+  --clr-sky-top    : #0d0d26;
+  --clr-sky-mid    : #1a1238;
+  --clr-sky-bot    : #2d1550;
+
+  /* Semantic */
+  --clr-text       : var(--clr-cream);
+  --clr-text-muted : rgba(255, 248, 237, 0.55);
+  --clr-accent     : var(--clr-lavender);
+
+  /* Typography */
+  --font-heading   : "Cormorant Garamond", Georgia, serif;
+  --font-body      : "Quicksand", system-ui, sans-serif;
+
+  /* Spacing scale */
+  --sp-xs  : 0.5rem;
+  --sp-sm  : 1rem;
+  --sp-md  : 1.75rem;
+  --sp-lg  : 3rem;
+  --sp-xl  : 5rem;
+
+  /* Misc */
+  --radius-pill : 9999px;
+  --ease-out    : cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition  : 0.35s var(--ease-out);
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing : border-box;
+  margin     : 0;
+  padding    : 0;
+}
+
+html {
+  scroll-behavior       : smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color : var(--clr-midnight);
+  color            : var(--clr-text);
+  font-family      : var(--font-body);
+  font-weight      : 400;
+  line-height      : 1.7;
+  min-height       : 100vh;
+  overflow-x       : hidden;
+}
+
+/* ── Welcome Section ───────────────────────────────────────────── */
+.welcome {
+  position        : relative;
+  min-height      : 100dvh;         /* dynamic viewport height */
+  min-height      : 100vh;          /* fallback */
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  overflow        : hidden;
+}
+
+/* ── Sky ───────────────────────────────────────────────────────── */
+.sky {
+  position  : absolute;
+  inset     : 0;
+  background:
+    /* subtle warm nebula in center-lower */
+    radial-gradient(ellipse at 50% 75%, rgba(80, 30, 110, 0.35) 0%, transparent 60%),
+    /* cool blue glow top-left */
+    radial-gradient(ellipse at 20% 15%, rgba(40, 30, 90, 0.5)  0%, transparent 50%),
+    /* base gradient top-to-bottom */
+    linear-gradient(175deg, #0d0d26 0%, #161032 25%, #1e1340 50%, #261650 75%, #2d1558 100%);
+  overflow  : hidden;
+}
+
+/* ── Stars layer ───────────────────────────────────────────────── */
+.stars-layer {
+  position : absolute;
+  inset    : 0;
+  z-index  : 1;
+}
+
+/* ── Moon ──────────────────────────────────────────────────────── */
+.moon-wrapper {
+  position : absolute;
+  top      : 7%;
+  right    : 6%;
+  width    : clamp(110px, 26vw, 200px);
+  z-index  : 2;
+  filter   :
+    drop-shadow(0 0 24px rgba(255, 248, 237, 0.30))
+    drop-shadow(0 0 72px rgba(205, 180, 219, 0.18));
+}
+
+.moon {
+  display    : block;
+  width      : 100%;
+  height     : auto;
+  animation  : float 9s ease-in-out infinite;
+}
+
+/* ── Clouds ────────────────────────────────────────────────────── */
+.clouds-layer {
+  position       : absolute;
+  inset          : 0;
+  z-index        : 3;
+  pointer-events : none;
+}
+
+.cloud {
+  position     : absolute;
+  background   : linear-gradient(
+    120deg,
+    rgba(205, 180, 219, 0.14),
+    rgba(243, 213, 229, 0.10)
+  );
+  border-radius: 60px;
+  filter       : blur(22px);
+}
+
+.cloud::before,
+.cloud::after {
+  content       : "";
+  position      : absolute;
+  background    : inherit;
+  border-radius : 50%;
+}
+
+/* cloud-1 — large, left, upper */
+.cloud-1 {
+  width  : clamp(180px, 32vw, 280px);
+  height : 50px;
+  top    : 16%;
+  left   : -60px;
+  animation: drift 30s linear infinite;
+}
+.cloud-1::before { width: 90px; height: 72px; top: -30px; left: 28px; }
+.cloud-1::after  { width: 70px; height: 56px; top: -20px; left: 90px; }
+
+/* cloud-2 — medium, right, mid-upper */
+.cloud-2 {
+  width  : clamp(140px, 24vw, 220px);
+  height : 42px;
+  top    : 30%;
+  right  : -50px;
+  opacity: 0.65;
+  animation: drift 38s linear infinite reverse;
+  animation-delay: -14s;
+}
+.cloud-2::before { width: 76px; height: 62px; top: -26px; left: 22px; }
+.cloud-2::after  { width: 58px; height: 48px; top: -18px; left: 76px; }
+
+/* cloud-3 — small, center-right, lower */
+.cloud-3 {
+  width  : clamp(120px, 20vw, 190px);
+  height : 38px;
+  top    : 60%;
+  left   : 55%;
+  opacity: 0.45;
+  animation: drift 34s linear infinite;
+  animation-delay: -20s;
+}
+.cloud-3::before { width: 65px; height: 55px; top: -24px; left: 20px; }
+.cloud-3::after  { width: 50px; height: 44px; top: -16px; left: 72px; }
+
+/* cloud-4 — tiny, left, low */
+.cloud-4 {
+  width  : clamp(100px, 16vw, 150px);
+  height : 32px;
+  top    : 76%;
+  left   : 12%;
+  opacity: 0.35;
+  animation: drift 44s linear infinite reverse;
+  animation-delay: -6s;
+}
+.cloud-4::before { width: 55px; height: 46px; top: -20px; left: 14px; }
+.cloud-4::after  { width: 44px; height: 38px; top: -14px; left: 58px; }
+
+/* ── Shooting Stars ────────────────────────────────────────────── */
+.shooting-star-layer {
+  position       : absolute;
+  inset          : 0;
+  z-index        : 4;
+  pointer-events : none;
+  overflow       : hidden;
+}
+
+.shooting-star {
+  position      : absolute;
+  width         : 2px;
+  height        : 2px;
+  background    : #fff;
+  border-radius : 50%;
+}
+
+/* Trail using ::after */
+.shooting-star::after {
+  content   : "";
+  position  : absolute;
+  top       : 50%;
+  right     : 2px;
+  width     : 100px;
+  height    : 1px;
+  background: linear-gradient(to left, rgba(255,255,255,0.75), transparent);
+  transform : translateY(-50%);
+}
+
+.ss-1 {
+  top             : 10%;
+  left            : 15%;
+  animation       : shoot 16s ease-in infinite;
+  animation-delay : 4s;
+}
+
+.ss-2 {
+  top             : 22%;
+  left            : 55%;
+  animation       : shoot 16s ease-in infinite;
+  animation-delay : 11.5s;
+}
+
+/* ── Welcome Content ───────────────────────────────────────────── */
+.welcome-content {
+  position        : relative;
+  z-index         : 10;
+  display         : flex;
+  flex-direction  : column;
+  align-items     : center;
+  gap             : var(--sp-md);
+  text-align      : center;
+  padding         : var(--sp-lg) var(--sp-sm);
+  max-width       : 680px;
+  width           : 100%;
+}
+
+/* Heading */
+.welcome-title {
+  font-family   : var(--font-heading);
+  font-size     : clamp(2.1rem, 7.5vw, 4.8rem);
+  font-weight   : 300;
+  line-height   : 1.15;
+  letter-spacing: 0.01em;
+  color         : var(--clr-cream);
+  text-shadow   :
+    0 0 48px rgba(205, 180, 219, 0.55),
+    0 2px 24px rgba(0, 0, 0, 0.5);
+  word-wrap     : break-word;
+}
+
+/* Subtitle */
+.welcome-subtitle {
+  font-family   : var(--font-body);
+  font-size     : clamp(0.95rem, 2.6vw, 1.15rem);
+  font-weight   : 300;
+  color         : var(--clr-lavender);
+  letter-spacing: 0.04em;
+  line-height   : 2;
+}
+
+/* Message */
+.welcome-message {
+  font-family   : var(--font-heading);
+  font-style    : italic;
+  font-size     : clamp(0.9rem, 2.2vw, 1.05rem);
+  font-weight   : 300;
+  color         : var(--clr-text-muted);
+  letter-spacing: 0.025em;
+  line-height   : 2;
+  max-width     : 460px;
+}
+
+/* CTA Button */
+.btn-universe {
+  display            : inline-flex;
+  align-items        : center;
+  justify-content    : center;
+  gap                : 0.4em;
+  margin-top         : var(--sp-xs);
+  padding            : 0.9em 2.4em;
+  min-height         : 48px;
+  border             : 1.5px solid rgba(205, 180, 219, 0.45);
+  border-radius      : var(--radius-pill);
+  background         : rgba(205, 180, 219, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter    : blur(10px);
+  color              : var(--clr-cream);
+  font-family        : var(--font-body);
+  font-size          : clamp(0.85rem, 2vw, 1rem);
+  font-weight        : 500;
+  letter-spacing     : 0.06em;
+  text-decoration    : none;
+  cursor             : pointer;
+  transition         :
+    background     var(--transition),
+    border-color   var(--transition),
+    box-shadow     var(--transition),
+    transform      var(--transition);
+  white-space        : nowrap;
+  touch-action       : manipulation;
+}
+
+.btn-universe:hover,
+.btn-universe:focus-visible {
+  background  : rgba(243, 213, 229, 0.2);
+  border-color: rgba(243, 213, 229, 0.8);
+  box-shadow  :
+    0 0 20px rgba(205, 180, 219, 0.45),
+    0 0 60px rgba(205, 180, 219, 0.2);
+  transform   : translateY(-3px);
+  outline     : none;
+}
+
+.btn-universe:active {
+  transform : translateY(-1px) scale(0.98);
+}
+
+/* ── Calendar Placeholder ──────────────────────────────────────── */
+.calendar-placeholder {
+  min-height      : 100dvh;
+  min-height      : 100vh;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  background      : linear-gradient(180deg, #2a1550 0%, #1a1238 100%);
+}
+
+.placeholder-text {
+  font-family   : var(--font-heading);
+  font-size     : clamp(1.1rem, 3.5vw, 1.8rem);
+  font-weight   : 300;
+  color         : var(--clr-lavender);
+  opacity       : 0.5;
+  letter-spacing: 0.06em;
+}
+
+/* ── Utility ───────────────────────────────────────────────────── */
+.visually-hidden {
+  position  : absolute;
+  width     : 1px;
+  height    : 1px;
+  overflow  : hidden;
+  clip      : rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+
+/* =================================================================
+   CALENDAR — styles appended in Tahap 2
+   ================================================================= */
+
+/* ── Section shell ─────────────────────────────────────────────── */
+.cal-section {
+  position   : relative;
+  padding    : clamp(3rem, 8vw, 6rem) var(--sp-sm) clamp(3rem, 8vw, 5rem);
+  background :
+    radial-gradient(ellipse at 60% 10%,  rgba(100, 50, 160, 0.3)  0%, transparent 55%),
+    radial-gradient(ellipse at 10% 80%,  rgba(50,  20, 100, 0.25) 0%, transparent 50%),
+    linear-gradient(180deg, #2a1550 0%, #1c1040 50%, #14102e 100%);
+  overflow   : hidden;
+  min-height : 100dvh;
+  min-height : 100vh;
+}
+
+/* Seamless bleed from welcome section */
+.cal-section::before {
+  content   : "";
+  position  : absolute;
+  top       : 0; left: 0; right: 0;
+  height    : 120px;
+  background: linear-gradient(to bottom, #2d1558, transparent);
+  pointer-events: none;
+}
+
+/* ── Decorative background elements ───────────────────────────── */
+.cal-bg {
+  position       : absolute;
+  inset          : 0;
+  pointer-events : none;
+  overflow       : hidden;
+}
+
+/* Tiny star dots */
+.cal-deco-star {
+  position     : absolute;
+  border-radius: 50%;
+  background   : rgba(255, 255, 255, 0.55);
+  animation    : twinkle 3.5s ease-in-out infinite;
+}
+.cal-deco-star-1 { width:3px; height:3px; top:12%; left:8%;  animation-delay:0.4s; }
+.cal-deco-star-2 { width:2px; height:2px; top:35%; right:6%; animation-delay:1.9s; }
+.cal-deco-star-3 { width:4px; height:4px; top:72%; left:85%; animation-delay:3.1s; }
+
+/* Small decorative moon */
+.cal-deco-moon-sm {
+  position  : absolute;
+  bottom    : 6%;
+  left      : 4%;
+  width     : clamp(60px, 10vw, 100px);
+  opacity   : 0.4;
+  animation : float 12s ease-in-out infinite;
+}
+.cal-deco-moon-sm svg { display: block; width: 100%; height: auto; }
+
+/* ── Section header ────────────────────────────────────────────── */
+.cal-header {
+  position        : relative;
+  z-index         : 1;
+  text-align      : center;
+  margin-bottom   : clamp(2rem, 5vw, 3.5rem);
+}
+
+.cal-title {
+  font-family   : var(--font-heading);
+  font-size     : clamp(2.2rem, 7vw, 4rem);
+  font-weight   : 300;
+  color         : var(--clr-cream);
+  letter-spacing: 0.02em;
+  line-height   : 1.1;
+  text-shadow   :
+    0 0 40px rgba(205, 180, 219, 0.5),
+    0 2px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom : 0.6em;
+}
+
+.cal-subtitle {
+  font-family   : var(--font-body);
+  font-size     : clamp(0.85rem, 2.2vw, 1rem);
+  font-weight   : 300;
+  color         : var(--clr-lavender);
+  letter-spacing: 0.05em;
+  opacity       : 0.8;
+}
+
+/* ── Cards grid ────────────────────────────────────────────────── */
+.cal-grid {
+  position              : relative;
+  z-index               : 1;
+  display               : grid;
+  grid-template-columns : repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap                   : 1.25rem;
+  max-width             : 980px;
+  margin                : 0 auto;
+  padding               : 0 var(--sp-sm);
+}
+
+/* ── Card base ─────────────────────────────────────────────────── */
+.cal-card {
+  position      : relative;
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap           : 0.75rem;
+  padding       : 1.75rem 1.5rem 1.5rem;
+  border-radius : 20px;
+  border        : 1px solid rgba(205, 180, 219, 0.15);
+  background    : rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter         : blur(12px);
+  cursor        : default;
+  user-select   : none;
+  /* Entrance animation */
+  animation     : cardEntrance 0.6s ease both;
+  transition    :
+    transform    var(--transition),
+    box-shadow   var(--transition),
+    border-color var(--transition),
+    background   var(--transition);
+}
+
+/* ── Locked card ───────────────────────────────────────────────── */
+.cal-card--locked {
+  opacity: 0.45;
+  filter : saturate(0.4);
+  cursor : pointer;
+}
+
+.cal-card--locked:hover {
+  opacity: 0.65;
+  border-color: rgba(205, 180, 219, 0.3);
+  transform: translateY(-2px);
+}
+
+.cal-card--locked:focus-visible {
+  opacity: 0.75;
+  outline: 2px solid rgba(205, 180, 219, 0.55);
+  outline-offset: 3px;
+}
+
+.cal-card--locked:active {
+  transform: translateY(0);
+}
+
+/* ── Unlocked card ─────────────────────────────────────────────── */
+.cal-card--unlocked {
+  cursor        : pointer;
+  border-color  : rgba(205, 180, 219, 0.3);
+  background    : rgba(205, 180, 219, 0.07);
+}
+
+.cal-card--unlocked:hover,
+.cal-card--unlocked:focus-visible {
+  transform     : translateY(-6px);
+  border-color  : rgba(205, 180, 219, 0.6);
+  background    : rgba(205, 180, 219, 0.12);
+  box-shadow    :
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(205, 180, 219, 0.2);
+  outline       : none;
+}
+
+.cal-card--unlocked:active {
+  transform : translateY(-2px) scale(0.99);
+}
+
+/* ── Today card — special highlight ───────────────────────────── */
+.cal-card--today {
+  cursor        : pointer;
+  border-color  : rgba(243, 213, 229, 0.55);
+  background    : rgba(243, 213, 229, 0.1);
+  box-shadow    :
+    0 0 0 1px rgba(243, 213, 229, 0.3),
+    0 0 32px rgba(243, 213, 229, 0.15),
+    0 4px 24px rgba(0, 0, 0, 0.3);
+  animation     : cardEntrance 0.6s ease both, pulseGlow 3s ease-in-out infinite;
+}
+
+.cal-card--today:hover,
+.cal-card--today:focus-visible {
+  transform    : translateY(-6px);
+  box-shadow   :
+    0 0 0 1px rgba(243, 213, 229, 0.5),
+    0 0 48px rgba(243, 213, 229, 0.25),
+    0 10px 40px rgba(0, 0, 0, 0.4);
+  outline      : none;
+}
+
+.cal-card--today:active {
+  transform : translateY(-2px) scale(0.99);
+}
+
+/* ── Card internals ────────────────────────────────────────────── */
+.cal-card__icon {
+  width  : 40px;
+  height : 40px;
+  color  : var(--clr-lavender);
+  flex-shrink: 0;
+}
+.cal-card--today  .cal-card__icon { color: var(--clr-soft-pink); }
+.cal-card--locked .cal-card__icon { color: rgba(205, 180, 219, 0.35); }
+
+.cal-card__icon svg {
+  width  : 100%;
+  height : 100%;
+}
+
+.cal-card__body {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  gap            : 0.25rem;
+  text-align     : center;
+}
+
+.cal-card__day-num {
+  font-family   : var(--font-heading);
+  font-size     : clamp(1.3rem, 3.5vw, 1.65rem);
+  font-weight   : 400;
+  color         : var(--clr-cream);
+  letter-spacing: 0.03em;
+}
+
+.cal-card__date {
+  font-family   : var(--font-body);
+  font-size     : 0.75rem;
+  font-weight   : 300;
+  color         : var(--clr-lavender);
+  letter-spacing: 0.04em;
+  opacity       : 0.8;
+}
+
+.cal-card__status {
+  display      : flex;
+  align-items  : center;
+  gap          : 0.4em;
+  font-family  : var(--font-body);
+  font-size    : 0.72rem;
+  font-weight  : 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color        : rgba(205, 180, 219, 0.6);
+  margin-top   : 0.25rem;
+}
+.cal-card--today    .cal-card__status { color: rgba(243, 213, 229, 0.85); }
+.cal-card--locked   .cal-card__status { color: rgba(205, 180, 219, 0.3);  }
+
+.cal-card__status-dot {
+  display      : inline-block;
+  width        : 6px;
+  height       : 6px;
+  border-radius: 50%;
+  background   : currentColor;
+  flex-shrink  : 0;
+}
+.cal-card--today .cal-card__status-dot {
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+/* ── Shake animation for locked cards ─────────────────────────── */
+.cal-card--shake {
+  animation: cardShake 0.45s ease !important;
+}
+
+/* ── Back navigation ───────────────────────────────────────────── */
+.cal-nav {
+  position       : relative;
+  z-index        : 1;
+  text-align     : center;
+  margin-top     : clamp(2.5rem, 6vw, 4rem);
+}
+
+.btn-back {
+  display        : inline-flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 0.5em;
+  padding        : 0.75em 2em;
+  min-height     : 44px;
+  border         : 1px solid rgba(205, 180, 219, 0.3);
+  border-radius  : var(--radius-pill);
+  background     : rgba(205, 180, 219, 0.06);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter         : blur(8px);
+  color          : var(--clr-lavender);
+  font-family    : var(--font-body);
+  font-size      : 0.85rem;
+  font-weight    : 400;
+  letter-spacing : 0.05em;
+  text-decoration: none;
+  cursor         : pointer;
+  transition     :
+    background   var(--transition),
+    border-color var(--transition),
+    color        var(--transition),
+    transform    var(--transition);
+  touch-action   : manipulation;
+}
+
+.btn-back:hover,
+.btn-back:focus-visible {
+  background  : rgba(205, 180, 219, 0.16);
+  border-color: rgba(205, 180, 219, 0.6);
+  color       : var(--clr-cream);
+  transform   : translateY(-2px);
+  outline     : none;
+}
+
+.btn-back:active {
+  transform : translateY(0) scale(0.98);
+}
+
+/* ── Modal overlay ─────────────────────────────────────────────── */
+.modal-overlay {
+  position        : fixed;
+  inset           : 0;
+  z-index         : 1000;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  padding         : var(--sp-sm);
+  background      : rgba(10, 8, 28, 0.78);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter         : blur(6px);
+  opacity         : 0;
+  transition      : opacity 0.3s ease;
+}
+.modal-overlay--open { opacity: 1; }
+
+/* ── Modal panel ───────────────────────────────────────────────── */
+.modal {
+  position        : relative;
+  display         : flex;
+  flex-direction  : column;
+  align-items     : center;
+  gap             : 0.85rem;
+  width           : 100%;
+  max-width       : 500px;
+  max-height      : min(88vh, 680px);
+  overflow-y      : auto;
+  overscroll-behavior: contain;
+  padding         : 2.5rem 1.75rem 2rem;
+  border-radius   : 24px;
+  border          : 1px solid rgba(205, 180, 219, 0.3);
+  background      : linear-gradient(
+    145deg,
+    rgba(36, 20, 68, 0.96),
+    rgba(24, 12, 48, 0.98)
+  );
+  box-shadow      :
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    0  0  40px rgba(205, 180, 219, 0.12);
+  transform       : translateY(0);
+  transition      : transform 0.3s var(--ease-out);
+  text-align      : center;
+  scrollbar-width : thin;
+  scrollbar-color : rgba(205, 180, 219, 0.35) transparent;
+}
+
+.modal::-webkit-scrollbar {
+  width: 6px;
+}
+.modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal::-webkit-scrollbar-thumb {
+  background: rgba(205, 180, 219, 0.25);
+  border-radius: var(--radius-pill);
+}
+.modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(205, 180, 219, 0.45);
+}
+
+.modal-overlay:not(.modal-overlay--open) .modal {
+  transform: translateY(24px);
+}
+
+.modal-close {
+  position       : absolute;
+  top            : 1rem;
+  right          : 1rem;
+  width          : 34px;
+  height         : 34px;
+  border         : none;
+  border-radius  : 50%;
+  background     : rgba(205, 180, 219, 0.12);
+  color          : var(--clr-lavender);
+  font-size      : 0.85rem;
+  cursor         : pointer;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  transition     : background var(--transition), color var(--transition), transform var(--transition);
+  z-index        : 5;
+}
+.modal-close:hover,
+.modal-close:focus-visible {
+  background: rgba(205, 180, 219, 0.28);
+  color     : var(--clr-cream);
+  transform : scale(1.08);
+  outline   : none;
+}
+
+.modal-deco {
+  width  : 44px;
+  height : 44px;
+  color  : var(--clr-soft-pink);
+  flex-shrink: 0;
+}
+.modal-deco svg { width: 100%; height: 100%; }
+
+.modal-badge {
+  display        : inline-block;
+  font-family    : var(--font-body);
+  font-size      : 0.72rem;
+  font-weight    : 500;
+  letter-spacing : 0.08em;
+  text-transform : uppercase;
+  color          : var(--clr-soft-pink);
+  background     : rgba(243, 213, 229, 0.1);
+  padding        : 0.22rem 0.85rem;
+  border-radius  : var(--radius-pill);
+  border         : 1px solid rgba(243, 213, 229, 0.25);
+}
+
+.modal-title {
+  font-family   : var(--font-heading);
+  font-size     : clamp(1.45rem, 4.5vw, 1.95rem);
+  font-weight   : 400;
+  color         : var(--clr-cream);
+  letter-spacing: 0.02em;
+  line-height   : 1.25;
+  text-shadow   : 0 0 24px rgba(205, 180, 219, 0.4);
+}
+
+.modal-date {
+  font-family   : var(--font-body);
+  font-size     : 0.8rem;
+  font-weight   : 300;
+  color         : var(--clr-lavender);
+  letter-spacing: 0.06em;
+  opacity       : 0.75;
+}
+
+.modal-divider {
+  width     : 56px;
+  height    : 1px;
+  background: linear-gradient(to right, transparent, rgba(205,180,219,0.45), transparent);
+  margin    : 0.2rem 0 0.4rem;
+  flex-shrink: 0;
+}
+
+.modal-body {
+  font-family    : var(--font-body);
+  font-size      : clamp(0.92rem, 2.2vw, 1.02rem);
+  font-weight    : 300;
+  color          : rgba(255, 248, 237, 0.92);
+  line-height    : 1.85;
+  letter-spacing : 0.012em;
+  width          : 100%;
+  text-align     : left;
+  display        : flex;
+  flex-direction : column;
+  gap            : 1.05rem;
+  padding        : 0.25rem 0.25rem 0;
+}
+
+.modal-body p {
+  margin: 0;
+}
+
+.modal-footer {
+  width          : 100%;
+  display        : flex;
+  justify-content: center;
+  margin-top     : 1.25rem;
+  padding-top    : 0.85rem;
+  border-top     : 1px solid rgba(205, 180, 219, 0.15);
+}
+
+.btn-modal-close {
+  display        : inline-flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 0.4em;
+  padding        : 0.65rem 2rem;
+  min-height     : 44px;
+  border-radius  : var(--radius-pill);
+  border         : 1.5px solid rgba(205, 180, 219, 0.35);
+  background     : rgba(205, 180, 219, 0.08);
+  color          : var(--clr-cream);
+  font-family    : var(--font-body);
+  font-size      : 0.88rem;
+  font-weight    : 500;
+  letter-spacing : 0.05em;
+  cursor         : pointer;
+  transition     :
+    background   var(--transition),
+    border-color var(--transition),
+    box-shadow   var(--transition),
+    transform    var(--transition);
+  touch-action   : manipulation;
+}
+
+.btn-modal-close:hover,
+.btn-modal-close:focus-visible {
+  background  : rgba(243, 213, 229, 0.18);
+  border-color: rgba(243, 213, 229, 0.7);
+  box-shadow  : 0 0 20px rgba(205, 180, 219, 0.35);
+  transform   : translateY(-2px);
+  outline     : none;
+}
+
+.btn-modal-close:active {
+  transform : translateY(0) scale(0.98);
+}
+
+/* ── Toast notification ────────────────────────────────────────── */
+.toast {
+  position     : fixed;
+  bottom       : 2rem;
+  left         : 50%;
+  transform    : translateX(-50%) translateY(12px);
+  z-index      : 1100;
+  padding      : 0.8em 1.6em;
+  border-radius: var(--radius-pill);
+  border       : 1px solid rgba(205, 180, 219, 0.35);
+  background   : rgba(26, 14, 52, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter         : blur(10px);
+  color        : var(--clr-lavender);
+  font-family  : var(--font-body);
+  font-size    : 0.85rem;
+  font-weight  : 400;
+  letter-spacing: 0.03em;
+  opacity      : 0;
+  pointer-events: none;
+  white-space  : nowrap;
+  transition   : opacity 0.3s ease, transform 0.3s ease;
+  max-width    : calc(100vw - 2rem);
+  text-align   : center;
+  white-space  : normal;
+}
+
+.toast--show {
+  opacity  : 1;
+  transform: translateX(-50%) translateY(0);
+}

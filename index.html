@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="7 Days Under the Same Sky — a romantic journey for Hanna." />
+  <title>7 Days Under the Same Sky</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- ══════════════════ WELCOME ══════════════════ -->
+    <section id="welcome" class="welcome" aria-label="Welcome">
+
+      <!-- ── Sky canvas (decorative, aria-hidden) ── -->
+      <div class="sky" aria-hidden="true">
+
+        <!-- Stars (populated by effects.js) -->
+        <div id="stars-layer" class="stars-layer"></div>
+
+        <!-- Crescent moon SVG -->
+        <div class="moon-wrapper">
+          <svg class="moon" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="moon-grad" cx="38%" cy="35%" r="65%">
+                <stop offset="0%"   stop-color="#FFFEF4" />
+                <stop offset="100%" stop-color="#FDEFC8" />
+              </radialGradient>
+              <radialGradient id="moon-halo" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stop-color="#FFF8ED" stop-opacity="0.18" />
+                <stop offset="100%" stop-color="#FFF8ED" stop-opacity="0"    />
+              </radialGradient>
+              <mask id="crescent">
+                <rect width="140" height="140" fill="white" />
+                <circle cx="90" cy="50" r="58" fill="black" />
+              </mask>
+            </defs>
+            <!-- Halo -->
+            <circle cx="70" cy="70" r="68" fill="url(#moon-halo)" />
+            <!-- Crescent body -->
+            <circle cx="62" cy="70" r="52" fill="url(#moon-grad)" mask="url(#crescent)" />
+          </svg>
+        </div>
+
+        <!-- Clouds -->
+        <div class="clouds-layer">
+          <div class="cloud cloud-1"></div>
+          <div class="cloud cloud-2"></div>
+          <div class="cloud cloud-3"></div>
+          <div class="cloud cloud-4"></div>
+        </div>
+
+        <!-- Shooting stars -->
+        <div class="shooting-star-layer">
+          <div class="shooting-star ss-1"></div>
+          <div class="shooting-star ss-2"></div>
+        </div>
+
+      </div>
+      <!-- /sky -->
+
+      <!-- ── Welcome content ── -->
+      <div class="welcome-content">
+
+        <h1 class="welcome-title anim-fade-in">
+          7 Days Under<br>the Same Sky
+        </h1>
+
+        <p class="welcome-subtitle anim-fade-in" style="animation-delay:.35s">
+          A little space, a little love,<br>
+          and seven days of wishes.
+        </p>
+
+        <p class="welcome-message anim-fade-in" style="animation-delay:.7s">
+          Hi, Hanna. Somewhere under this same sky,<br>
+          there's someone wishing you a peaceful day.
+        </p>
+
+        <a href="#calendar" class="btn-universe anim-fade-in" style="animation-delay:1.05s">
+          Open Your Little Universe ✨
+        </a>
+
+      </div>
+      <!-- /welcome-content -->
+
+    </section>
+    <!-- /welcome -->
+
+    <!-- ══════════════════ CALENDAR ══════════════════ -->
+    <!-- Rendered by CalendarUI.init() in calendar-ui.js -->
+    <section id="calendar" class="cal-section" aria-label="Seven Little Days"></section>
+
+  </div>
+  <!-- /app -->
+
+  <!-- Scripts (order matters: config → effects → messages → calendar → calendar-ui → main) -->
+  <script src="js/config.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/calendar-ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

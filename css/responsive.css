@@ -1,0 +1,181 @@
+/* =================================================================
+   responsive.css — mobile-first breakpoint overrides
+   Tested viewports: 320px, 375px, 390px, 768px, 1024px, 1440px
+   ================================================================= */
+
+/* ── Ultra-small Mobile (<= 350px, e.g. 320px iPhone 5/SE) ────── */
+@media (max-width: 350px) {
+  .welcome-title {
+    font-size: 1.85rem;
+  }
+  .welcome-subtitle {
+    font-size: 0.86rem;
+    line-height: 1.7;
+  }
+  .welcome-message {
+    font-size: 0.84rem;
+  }
+  .btn-universe {
+    padding: 0.8em 1.5em;
+    font-size: 0.82rem;
+    white-space: normal;
+    text-align: center;
+  }
+  .cal-title {
+    font-size: 1.8rem;
+  }
+  .cal-card__day-num {
+    font-size: 1.25rem;
+  }
+}
+
+/* ── Mobile general (<= 479px, e.g. 375px, 390px) ─────────────── */
+@media (max-width: 479px) {
+  .welcome-content {
+    padding: 2.25rem 1rem;
+    gap: 1.25rem;
+  }
+
+  /* Keep moon decorative without dominating small viewports */
+  .moon-wrapper {
+    width: clamp(75px, 20vw, 110px);
+    top: 3.5%;
+    right: 4%;
+    opacity: 0.85;
+  }
+
+  /* Subtler clouds on mobile so text stands out crisply */
+  .cloud {
+    opacity: 0.3 !important;
+  }
+
+  .cal-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    padding: 0 0.5rem;
+  }
+
+  .cal-card {
+    padding: 1.4rem 1.15rem 1.25rem;
+  }
+
+  .modal {
+    padding: 2.25rem 1.25rem 1.75rem;
+    max-height: 86vh;
+    border-radius: 20px;
+  }
+}
+
+/* ── Mobile landscape / Small tablets (480px - 859px) ──────────── */
+@media (min-width: 480px) and (max-width: 859px) {
+  .cal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* Center the lone 7th card in a 2-column grid */
+  .cal-card:last-child:nth-child(7) {
+    grid-column: 1 / -1;
+    max-width: 380px;
+    justify-self: center;
+    width: 100%;
+  }
+}
+
+/* ── Tablet (640px and up) ─────────────────────────────────────── */
+@media (min-width: 640px) {
+  .moon-wrapper {
+    top: 8%;
+    right: 8%;
+  }
+
+  .welcome-content {
+    padding: 3rem 2rem;
+    gap: 2rem;
+  }
+
+  .cloud-1 { top: 14%; }
+  .cloud-2 { top: 28%; }
+
+  .modal {
+    padding: 2.85rem 2.25rem 2.25rem;
+  }
+}
+
+/* ── Medium Tablet (768px, e.g. iPad portrait) ─────────────────── */
+@media (min-width: 768px) {
+  .cal-section {
+    padding: 5rem 2rem 4.5rem;
+  }
+
+  .cal-header {
+    margin-bottom: 3rem;
+  }
+}
+
+/* ── Desktop / Large Tablet Landscape (860px and up) ───────────── */
+@media (min-width: 860px) {
+  .cal-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+    gap: 1.5rem;
+  }
+
+  /* Center the lone 7th card in row 3 */
+  .cal-card:last-child:nth-child(7) {
+    grid-column: 2;
+  }
+}
+
+/* ── Desktop (1024px and up) ───────────────────────────────────── */
+@media (min-width: 1024px) {
+  .moon-wrapper {
+    top: 8%;
+    right: 10%;
+  }
+
+  .welcome-content {
+    gap: 2.25rem;
+  }
+
+  .cloud-1 { top: 12%; }
+  .cloud-2 { top: 26%; }
+  .cloud-3 { top: 56%; }
+
+  .cal-section {
+    padding: 6rem 2rem 5rem;
+  }
+
+  .cal-grid {
+    gap: 1.75rem;
+    padding: 0 2rem;
+  }
+}
+
+/* ── Large Desktop (1440px and up) ─────────────────────────────── */
+@media (min-width: 1440px) {
+  .moon-wrapper {
+    top: 10%;
+    right: 12%;
+  }
+
+  .welcome-content {
+    max-width: 760px;
+  }
+
+  .cal-grid {
+    max-width: 980px;
+  }
+}
+
+/* ── Reduced-motion preference ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration        : 0.01ms !important;
+    animation-iteration-count : 1      !important;
+    transition-duration       : 0.01ms !important;
+    scroll-behavior           : auto   !important;
+  }
+}

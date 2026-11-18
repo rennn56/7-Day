@@ -1,0 +1,78 @@
+/* =================================================================
+   animations.css — keyframes & animation utility classes
+   ================================================================= */
+
+/* ── Keyframes ─────────────────────────────────────────────────── */
+
+/* Star twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 1;    transform: scale(1);    }
+  40%       { opacity: 0.15; transform: scale(0.65); }
+  60%       { opacity: 0.4;  transform: scale(0.8);  }
+}
+
+/* Moon / element gentle float */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-16px); }
+}
+
+/* Cloud horizontal drift (left ↔ right) */
+@keyframes drift {
+  from { transform: translateX(-320px); }
+  to   { transform: translateX(calc(100vw + 320px)); }
+}
+
+/* Fade-in + rise — for content entrance */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Shooting star diagonal streak */
+@keyframes shoot {
+  0%   {
+    transform : translate(0, 0) rotate(-28deg);
+    opacity   : 0;
+  }
+  4%   { opacity: 1; }
+  55%  { opacity: 0.5; }
+  75%  {
+    transform : translate(380px, 220px) rotate(-28deg);
+    opacity   : 0;
+  }
+  100% {
+    transform : translate(380px, 220px) rotate(-28deg);
+    opacity   : 0;
+  }
+}
+
+/* Soft pulse glow — accent elements */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(205, 180, 219, 0.25); }
+  50%       { box-shadow: 0 0 32px rgba(205, 180, 219, 0.65); }
+}
+
+/* ── Utility Classes ───────────────────────────────────────────── */
+.anim-twinkle { animation: twinkle   3s   ease-in-out infinite; }
+.anim-float   { animation: float     9s   ease-in-out infinite; }
+.anim-fade-in { animation: fadeIn    0.9s ease          both;   }
+.anim-pulse   { animation: pulseGlow 2.5s ease-in-out  infinite; }
+
+
+/* ── Tahap 2 additions ─────────────────────────────────────────── */
+
+/* Card entrance — fade up */
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Locked-card shake */
+@keyframes cardShake {
+  0%, 100% { transform: translateX(0);     }
+  20%       { transform: translateX(-8px);  }
+  40%       { transform: translateX( 7px);  }
+  60%       { transform: translateX(-5px);  }
+  80%       { transform: translateX( 4px);  }
+}
