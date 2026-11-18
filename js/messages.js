@@ -1,5 +1,5 @@
 /**
- * messages.js — per-day message content for Hanna.
+ * messages.js — per-day message content for Sayang.
  * Each entry maps to one day of the 7-day celestial journey.
  */
 
@@ -9,7 +9,7 @@ const MESSAGES = [
     day: 1,
     title: "A Gentle Hello",
     subtitle: "A soft whisper under the evening sky",
-    body: `Halo, Hanna.
+    body: `Halo, Sayang.
 
 Semoga harimu hari ini berjalan dengan tenang dan penuh rasa nyaman.
 
@@ -23,7 +23,7 @@ Kalau harimu terasa melelahkan, istirahatlah yang cukup ya. Jaga kesehatanmu bai
     day: 2,
     title: "Little Things About You",
     subtitle: "The quiet details that linger gently",
-    body: `Hai, Hanna.
+    body: `Hai, Sayang.
 
 Kadang-kadang, hal-hal sederhana tentangmu suka melintas begitu saja di kepalaku. Cara bicaramu yang khas, tawamu yang renyah saat menemukan hal lucu, atau bagaimana matamu berbinar saat menceritakan sesuatu yang benar-benar kamu sukai.
 
@@ -37,7 +37,7 @@ Semoga hari keduamu ini diisi dengan hal-hal manis yang membuatmu tersenyum.`,
     day: 3,
     title: "A Wish for Your Smile",
     subtitle: "A little light to brighten your day",
-    body: `Untuk Hanna,
+    body: `Untuk Sayang,
 
 Di antara semua rutinitas dan hal-hal yang mungkin menguras energimu hari ini, ada satu doa sederhana yang ingin kukirimkan: semoga kamu menemukan setidaknya satu alasan kecil untuk tersenyum tulus.
 
@@ -51,7 +51,7 @@ Kalau ada hal yang sempat terasa berat hari ini, ingatlah bahwa kamu sudah berus
     day: 4,
     title: "A Little Miss You",
     subtitle: "Honest thoughts without pressure",
-    body: `Hai, Hanna.
+    body: `Hai, Sayang.
 
 Jujur, ada rasa rindu yang sesekali datang mengetuk dengan tenang. Tapi jangan khawatir, aku menyampaikannya bukan untuk membuatmu merasa bersalah, terbebani, atau merasa harus segera kembali.
 
@@ -65,7 +65,7 @@ Rindu ini hanya pengingat kecil bahwa keberadaanmu sungguh berharga bagiku. Semo
     day: 5,
     title: "Learning to Be Better",
     subtitle: "Growth is a quiet promise to oneself",
-    body: `Hanna,
+    body: `Sayang,
 
 Waktu-waktu tenang belakangan ini mengajarkanku banyak hal berharga tentang kedewasaan. Aku menyadari bahwa menjaga sebuah hubungan tidak pernah cukup hanya dengan niat baik atau kata-kata manis, melainkan butuh kerendahan hati untuk mendengar, memahami, dan berbenah.
 
@@ -79,7 +79,7 @@ Proses belajar ini kuusahakan dengan sungguh-sungguh untuk diriku sendiri, agar 
     day: 6,
     title: "My Quietest Wish",
     subtitle: "A silent prayer for your happiness",
-    body: `Hai, Hanna.
+    body: `Hai, Sayang.
 
 Menjelang hari-hari terakhir di ruang kecil ini, ada satu harapan yang selalu kusimpan dalam hening: semoga kamu selalu bahagia dan damai dengan apa pun jalan serta pilihan yang sedang kamu tempuh.
 
@@ -93,13 +93,13 @@ Kebahagiaan dan kedamaian hatimu adalah hal yang utama bagiku. Semoga malam ini 
     day: 7,
     title: "A Letter Under the Same Sky",
     subtitle: "Closing words with warmth and sincerity",
-    body: `Dear Hanna,
+    body: `Dear Sayang,
 
 Tujuh hari telah berlalu, dan ini adalah lembar penutup dari ruang kecil yang kubuat khusus untukmu.
 
 Pertama-tama, dari lubuk hatiku yang paling dalam, aku ingin meminta maaf dengan tulus atas setiap kata, sikap, atau kekhilafanku di masa lalu yang sempat melukai perasaanmu atau membuatmu merasa tidak nyaman. Aku menyadari kekuranganku, dan aku sungguh-sungguh belajar dari setiap kesalahan itu.
 
-Terima kasih banyak, Hanna. Terima kasih untuk semua kenangan indah, tawa, kebaikan, dan pelajaran berharga yang pernah kamu hadirkan dalam hidupku. Rasa sayang dan penghargaan yang kumiliki untukmu tidak pernah berkurang sedikit pun; kini rasanya justru jauh lebih tulus, tenang, dan dewasa.
+Terima kasih banyak, Sayang. Terima kasih untuk semua kenangan indah, tawa, kebaikan, dan pelajaran berharga yang pernah kamu hadirkan dalam hidupku. Rasa sayang dan penghargaan yang kumiliki untukmu tidak pernah berkurang sedikit pun; kini rasanya justru jauh lebih tulus, tenang, dan dewasa.
 
 Aku berkomitmen pada diriku sendiri untuk terus bertumbuh menjadi pribadi yang lebih baik, lebih bijak, dan lebih mampu menghargai orang lain—dengan atau tanpa disaksikan siapa pun.
 
@@ -108,6 +108,6 @@ Surat ini kutulis tanpa menuntut jawaban, keputusan, atau balasan apa pun darimu
 Di mana pun langkahmu membawamu nanti, ingatlah bahwa di bawah langit malam yang sama, selalu ada seseorang yang mendoakan yang terbaik untuk kebahagiaanmu.
 
 With all my sincerity and warmth,
-Sampai jumpa, Hanna. ✨`,
+Sampai jumpa, Sayang. ✨`,
   },
 ];
